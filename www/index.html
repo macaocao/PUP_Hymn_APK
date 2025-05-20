@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUP Hymn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+    <div class="header">
+        <img src="img/pup logo.png" alt="PUP Logo">
+        POLYTECHNIC UNIVERSITY OF THE PHILIPPINES
+    </div>
+
+    <div class="container">
+        <div class="lyrics-container" id="lyrics-container">
+            <div class="lyrics">
+                <span data-time="12">Sintang Paaralan</span><br>
+                <span data-time="16">Tanglaw ka ng bayan</span><br>
+                <span data-time="19">Pandayan ng isip ng kabataan</span><br>
+                <span data-time="24">Kami ay dumating nang salat sa yaman</span><br>
+                <span data-time="30">Hanap na dunong ay iyong alay</span><br>
+                <span data-time="36">Ang layunin mong makatao</span><br>
+                <span data-time="42">Dinarangal ang Pilipino</span><br>
+                <span data-time="48">Ang iyong aral, diwa, adhikang taglay</span><br>
+                <span data-time="53">PUP, aming gabay</span><br>
+                <span data-time="56">Paaralang dakila</span><br>
+                <span data-time="63">PUP, pinagpala</span><br>
+                <span data-time="69">Gagamitin ang karunungan</span><br>
+                <span data-time="75">Mula sa iyo, para sa bayan</span><br>
+                <span data-time="81">Ang iyong aral, diwa, adhikang taglay</span><br>
+                <span data-time="87">PUP, aming gabay</span><br>
+                <span data-time="90">Paaralang dakila</span><br>
+                <span data-time="">PUP, pinagpala</span><br>
+            </div>
+        </div>
+
+        <!-- Audio Section -->
+        <div class="audio-container">
+            <h2>PUP Hymn</h2>
+            <img src="img/PUP Song Cover.png" alt="Album Art">
+            <audio id="song" controls autoplay>
+                <source src="img/Imno ng PUP (The PUP Hymn).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        const song = document.getElementById('song');
+        const lyricsContainer = document.getElementById('lyrics-container');
+        const lyrics = document.querySelectorAll('.lyrics span');
+        
+        song.ontimeupdate = function () {
+            const currentTime = song.currentTime;
+            
+            // Remove previous highlight
+            lyrics.forEach(lyric => lyric.classList.remove('highlight'));
+            
+            // Highlight the current lyric based on the current time
+            lyrics.forEach(lyric => {
+                const time = parseFloat(lyric.getAttribute('data-time'));
+                if (currentTime >= time && currentTime < time + 4) { // Adjust the duration of each lyric
+                    lyric.classList.add('highlight');
+                    // Scroll to the highlighted lyric
+                    lyric.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        };
+    </script>
+
+</body>
+</html>
